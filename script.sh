@@ -77,6 +77,12 @@ fi
 apt-get update
 apt-get install -y fail2ban
 
+sudo apt install openssh-server -y
+
+sudo systemctl enable ssh
+
+sudo systemctl start ssh
+
 # Перезапускаем sshd
 if systemctl is-active sshd &>/dev/null; then
   systemctl restart sshd
