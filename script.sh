@@ -77,6 +77,9 @@ fi
 apt-get update
 apt-get install -y fail2ban
 
+sudo systemctl enable fail2ban
+sudo systemctl start fail2ban
+
 sudo apt install openssh-server -y
 
 sudo systemctl enable ssh
