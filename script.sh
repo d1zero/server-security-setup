@@ -93,6 +93,7 @@ fi
 # Настраиваем ufw
 ufw allow "$NEW_SSH_PORT"/tcp
 ufw deny 22/tcp
+ufw default deny incoming
 ufw --force enable
 
 echo "Готово! Пользователь $NEW_USER создан, SSH-ключ настроен, sshd слушает на порту $NEW_SSH_PORT."
