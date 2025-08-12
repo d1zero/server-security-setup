@@ -2,7 +2,7 @@
 ## 1. Зайдите на новый сервер используя связку логин/пароль
 ## 2. Запустите команду 
 ```shell
-wget -O- https://raw.githubusercontent.com/d1zero/server-security-setup/HEAD/script.sh | bash
+wget https://raw.githubusercontent.com/d1zero/server-security-setup/HEAD/script.sh -O script.sh && chmod +x script.sh && sudo ./script
 ```
 ## 3. Скрипт попросит вас ввести публичный SSH-ключ
 ```shell
