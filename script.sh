@@ -94,8 +94,8 @@ else
 fi
 
 # Настраиваем ufw
-ufw allow "$NEW_SSH_PORT"/tcp
 ufw deny 22/tcp
+ufw allow "$NEW_SSH_PORT"/tcp
 ufw default deny incoming
 ufw --force enable
 
