@@ -73,12 +73,31 @@ else
   echo "AllowUsers $NEW_USER" >> "$SSHD_CONFIG"
 fi
 
-# Устанавливаем fail2ban
+# Устанавливаем и настраиваем fail2ban
 apt-get update
 apt-get install -y fail2ban
 
+sudo tee /etc/fail2ban/jail.d/service.conf > /dev/null << EOF
+[DEFAULT]
+bantime     = 4h
+findtime    = 5m
+maxretry    = 3
+ignoreip    = 127.0.0.1/8 ::1 ${SERVER_IP}/32
+
+[sshd]
+enabled     = true
+port        = 15364
+filter      = sshd
+logpath     = %(sshd_log)s
+backend     = systemd
+maxretry    = 3
+findtime    = 8m
+bantime     = 2d
+EOF
+
+sudo fail2ban-client -t
 sudo systemctl enable fail2ban
-sudo systemctl start fail2ban
+sudo systemctl restart fail2ban
 
 sudo apt install openssh-server -y
 
